@@ -12,6 +12,7 @@ header {
     padding: 20px 0;
     text-align: center;
     margin-bottom: 30px;
+    animation: fadeInDown 1s ease-out;
 }
 
 header h1 {
@@ -30,13 +31,39 @@ header h1 {
 
 h2 {
     color: #007bff;
-    border-bottom: 2px solid #007bff;
     padding-bottom: 10px;
     margin-top: 25px;
 }
 
+.animated-border {
+    position: relative;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.animated-border::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background-color: #28a745;
+    transition: left 0.3s ease-in-out;
+}
+
+.animated-border:hover::after {
+    left: 0;
+}
+
 p {
     margin-bottom: 15px;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
 }
 
 ul {
@@ -45,8 +72,35 @@ ul {
     margin-bottom: 15px;
 }
 
-ul li {
+.list-slide-in li {
     margin-bottom: 8px;
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards var(--delay);
+}
+
+.list-slide-in li:nth-child(1) {
+    --delay: 0.2s;
+}
+
+.list-slide-in li:nth-child(2) {
+    --delay: 0.4s;
+}
+
+.list-slide-in li:nth-child(3) {
+    --delay: 0.6s;
+}
+
+.list-slide-in li:nth-child(4) {
+    --delay: 0.8s;
+}
+
+.list-slide-in li:nth-child(5) {
+    --delay: 1s;
+}
+
+.list-slide-in li:nth-child(6) {
+    --delay: 1.2s;
 }
 
 .important {
@@ -61,4 +115,48 @@ footer {
     border-top: 1px solid #ccc;
     color: #777;
     font-size: 0.9em;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Définition des animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
